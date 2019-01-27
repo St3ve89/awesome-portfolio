@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Link from 'next/link';
+import '../../styles/main.scss';
 
 
 class Header extends Component {
   render() {
-    debugger;
-    const title = this.props.title;
 
-    this.props.children
     return (
       <React.Fragment>
-        <p>{title}</p>
+        <p className="customStyle">blblu</p>
          <Link href="/">
           <a>Home</a>
         </Link>
