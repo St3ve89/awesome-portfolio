@@ -1,14 +1,15 @@
 import React from 'react';
+import BaseLayout from '../components/layouts/BaseLayout';
 
 
-const Index = () => {
-  return (
-    <h1>I am Index Page!</h1>
-  )
+class Index extends React.Component {
+  render() {
+    return (
+      <BaseLayout>
+        <h1>Index Page</h1>
+      </BaseLayout>
+    )
+  }
 }
-
-// class Index extends React.Component {
-
-// }
 
 export default Index;

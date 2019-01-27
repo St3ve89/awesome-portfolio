@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 
-class About extends Component {
+
+class Blogs extends Component {
   render() {
     return (
       <BaseLayout>
-        <h1>about page</h1>
+         <h1>i am blog page</h1>
       </BaseLayout>
     )
   }
 }
 
-export default About;
+export default Blogs

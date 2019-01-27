@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 
-class About extends Component {
+class Cv extends Component {
   render() {
     return (
       <BaseLayout>
-        <h1>about page</h1>
+         <h1>i am cv page</h1>
       </BaseLayout>
     )
   }
 }
 
-export default About;
+export default Cv
