@@ -10,7 +10,8 @@ class Index extends React.Component {
     this.state = {
       title: 'I am index page'
     }
-    console.log('constructor');
+   
+    // this.changeTitle = this.changeTitle.bind(this);
   }
 
   componentDidMount() {
@@ -25,19 +26,20 @@ class Index extends React.Component {
     console.log('componentWillUnmount');
   }
 
-  changeTitle() {
-    debugger;
+  changeTitle = () => {
+    // debugger;
+    // console.log('update title')
     this.setState({title: 'I am updated index page!!!!!!'});
   }
 
   render() {
     console.log('render');
-    debugger;
+    // debugger;
     const {title} = this.state;
     return (
       <BaseLayout>
         <h1>{title}</h1>
-        <button onClick={() => this.changeTitle()}>Change title</button>
+        <button onClick={this.changeTitle}>Change title</button>
       </BaseLayout>
     )
   }
