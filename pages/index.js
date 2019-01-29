@@ -4,6 +4,12 @@ import BaseLayout from '../components/layouts/BaseLayout';
 
 class Index extends React.Component {
 
+  static getInitialProps() {
+    console.log(' I am get inital props')
+
+    return {initialData: [1,2,3,4]};
+  }
+
   constructor() {
     super();
 
@@ -34,8 +40,9 @@ class Index extends React.Component {
 
   render() {
     console.log('render');
-    // debugger;
+    debugger;
     const {title} = this.state;
+    const initialData = this.props.initialData;
     return (
       <BaseLayout>
         <h1>{title}</h1>
