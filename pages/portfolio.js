@@ -7,7 +7,7 @@ class Portfolio extends Component {
     return (
       <BaseLayout>
         <h1>I am Portfolio page</h1>
-        <h2>{this.props.router.query.title}</h2>
+        <h2>{this.props.router.query.id}</h2>
       </BaseLayout>
     )
   }
