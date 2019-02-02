@@ -40,14 +40,10 @@ class Index extends React.Component {
   }
 
   changeTitle = () => {
-    // debugger;
-    // console.log('update title')
     this.setState({title: 'I am updated index page!!!!!!'});
   }
 
   render() {
-    console.log('render');
-    debugger;
     const {title} = this.state;
     const {userData, initialData} = this.props;
     return (
