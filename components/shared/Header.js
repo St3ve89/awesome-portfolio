@@ -8,7 +8,6 @@ class Header extends Component {
 
     return (
       <React.Fragment>
-        <p className="customStyle">blblu</p>
          <Link href="/">
           <a>Home</a>
         </Link>
