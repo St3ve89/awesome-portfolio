@@ -1,9 +1,10 @@
 @import './shared/fonts';
 
-html,body {
-  font-family: 'Montserrat', 'Helvetica';
-}
+// pages
+@import './index';
 
-.customStyle {
-  color: pink;
+html, body {
+  height:100%;
+  width:100%;
+  font-family: 'Montserrat', 'Helvetica';
 }
