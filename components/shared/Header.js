@@ -14,7 +14,7 @@ const BsNavLink = (props) => {
 
   return (
     <Link href={route}>
-      <a className="nav-link">{text}</a>
+      <a className="nav-link port-navbar-link">{text}</a>
     </Link>
   )
 }
@@ -36,24 +36,24 @@ export default class Example extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Istvan Acs</NavbarBrand>
+        <Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+          <NavbarBrand className="port-navbar-brand" href="/">Istvan Acs</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
+              <NavItem className="port-navbar-item">
                 <BsNavLink route="/" text="Home"/>
               </NavItem>
-              <NavItem>
+              <NavItem className="port-navbar-item">
                 <BsNavLink route="/about" text="About"/>
               </NavItem>
-              <NavItem>
+              <NavItem className="port-navbar-item">
                 <BsNavLink route="/portfolios" text="Portfolio"/>
               </NavItem>
-              <NavItem>
+              <NavItem className="port-navbar-item">
                 <BsNavLink route="/blogs" text="Blog"/>
               </NavItem>
-              <NavItem>
+              <NavItem className="port-navbar-item">
                 <BsNavLink route="/cv" text="CV"/>
               </NavItem>
             </Nav>
