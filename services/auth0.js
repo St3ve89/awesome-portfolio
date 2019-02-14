@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 class Auth0 {
 
@@ -61,12 +62,36 @@ class Auth0 {
     this.auth0.authorize();
   }
 
+  async getJWKS() {
+    const res = await axios.get('https://dev-1cnzle42.eu.auth0.com/.well-known/jwks.json');
+    const jwks = res.data;
+    return jwks;
+  }
+
   verifyToken(token) {
     if(token) {
-      const decodedToken = jwt.decode(token);
-      const expiresAt = decodedToken.exp * 1000;
+      const decodedToken = jwt.decode(token, { complete: true });
+      const jwks = await this.getJWKS();
+      const jwk = jwks.keys[0];
+      //  build certificate
+      let cert = jwk.x5c[0];
+      cert = cert.match(/.{1,64}/g).join('\n');
+      cert = `-----BEGIN CERTIFICATE-----\n${cert}-----END CERTIFICATE-----\n`;
 
-      return (decodedToken && new Date().getTime() < expiresAt) ? decodedToken : undefined;
+      if(jwk.kid === decodedToken.header.kid) {
+        try {
+          const verifiedToken = jwt.verify(token, cert);
+          const expiresAt = verifiedToken.exp * 1000;
+
+          return (verifiedToken && new Date().getTime() < expiresAt) ? verifiedToken : undefined;
+        }catch(err) {
+          return undefined;
+        }
+      }
+
+      
+
+      
     }
 
     return undefined;
