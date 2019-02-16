@@ -99,7 +99,6 @@ class Auth0 {
   }
 
   async clientAuth() {
-    debugger;
     const token = Cookies.getJSON('jwt');
     const verifiedToken = await this.verifyToken(token);
 
