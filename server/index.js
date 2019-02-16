@@ -32,6 +32,12 @@ app.prepare()
     return handle(req, res)
   })
 
+  server.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      res.status(401).send({title: 'unauthorized', detail: 'Unauthorized Access!'});
+    }
+  });
+
   server.use(handle).listen(3000, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
