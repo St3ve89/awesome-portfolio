@@ -9,7 +9,9 @@ class PortfolioNew extends Component {
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-create-page" title="Create new Portfolio">
-          <PortfolioForm />
+          <PortfolioForm onClick={(someVariables) => {
+            console.log(someVariables)
+          }}/>
         </BasePage>
       </BaseLayout>
     )
