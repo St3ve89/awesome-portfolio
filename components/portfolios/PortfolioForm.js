@@ -1,5 +1,6 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
+import { Button } from 'reactstrap';
 import PortfolioInput from '../form/PortfolioInput';
 import PortfolioDate from '../form/PortfolioDate';
 
@@ -9,10 +10,17 @@ const validateInputs = (values) => {
 
 
   Object.entries(values).forEach(([key, value]) => {
-    if(!values[key]) {
-      errors[key] = `Field ${key} is required!`
+    if(!values[key] && (values[key] === 'startDate' || values[key] === 'endDate')) {
+      errors[key] = `Field ${key} is required!`;
     }
   })
+
+  const startDate = values.startDate;
+  const endDate = values.endDate;
+
+  if(startDate && endDate && endDate.isBefore(startDate)) {
+    errors.endDate = 'End Date cannot be before start date!!';
+  }
 
   return errors;
 }
@@ -47,10 +55,10 @@ const PortfolioForm = (props) => (
           <Field type="text" name="position" component={PortfolioInput} label="Position"/>
           <Field type="textarea" name="description" component={PortfolioInput} label="Description"/>
           <Field name="startDate" component={PortfolioDate} label="Start Date"/>
-          <Field name="endDate" component={PortfolioDate} label="End Date"/>
-          <button type="submit" disabled={isSubmitting}>
+          <Field name="endDate" component={PortfolioDate} label="End Date" canBeDisabled={true}/>
+          <Button color="success" size='lg' type="submit" disabled={isSubmitting}>
             Create
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>
