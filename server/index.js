@@ -9,6 +9,7 @@ const authService = require('./services/auth');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = routes.getRequestHandler(app);
+const config = require('./config');
 
 const secretData = [
   {
@@ -21,7 +22,7 @@ const secretData = [
   }
 ]
 
-mongoose.connect('mongodb+srv://Istvan:testtest1@cluster0-dhndp.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
+mongoose.connect(config.DB_URI, { useNewUrlParser: true })
   .then(() => console.log('Database Connected!'))
   .catch(err => console.error(err));
 
