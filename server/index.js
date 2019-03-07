@@ -11,7 +11,7 @@ const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 const config = require('./config');
 
-const Book = require('./models/books');
+const Book = require('./models/book');
 const bodyParser = require('body-parser');
 const bookRoutes = require('./routes/book');
 
