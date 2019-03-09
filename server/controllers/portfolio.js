@@ -26,3 +26,35 @@ exports.savePortfolio = (req, res) => {
     }
   });
 };
+
+exports.updatePortfolio = (req, res) => {
+  const portfolioId = req.params.id;
+  const portfolioData = req.body;
+
+  Portfolio.findById(portfolioId, (err, foundPortfolio) => {
+    if(err) {
+      return res.status(422).send(err);
+    } else {
+      foundPortfolio.set(portfolioData);
+      foundPortfolio.save((err, savedPortfolio) => {
+        if(err) {
+          return res.status(422).send(err);
+        } else {
+          return res.json(foundPortfolio);
+        }
+      })
+    }
+  })
+};
+
+exports.deletePortfolio = (req, res) => {
+  const portfolioId = req.params.id;
+
+  Portfolio.deleteOne({_id: portfolioId}, (err, deletedPortfolio) => {
+    if(err) {
+      return res.status(422).send(err);
+    } else {
+      return res.json({status: 'DELETED'});
+    }
+  })
+}

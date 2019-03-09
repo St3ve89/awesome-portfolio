@@ -9,4 +9,8 @@ router.post('', authService.checkJWT, authService.checkRole('siteOwner'), bookPo
 
 router.get('', authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.getPortfolios);
 
+router.patch('/:id',authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.updatePortfolio);
+
+router.delete('/:id',authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.deletePortfolio);
+
 module.exports = router;
