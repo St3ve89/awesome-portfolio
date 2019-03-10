@@ -7,7 +7,7 @@ const bookPortfolio = require('../controllers/portfolio');
 
 router.post('', authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.savePortfolio);
 
-router.get('', authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.getPortfolios);
+router.get('', bookPortfolio.getPortfolios);
 
 router.patch('/:id',authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.updatePortfolio);
 
