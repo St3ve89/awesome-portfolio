@@ -1,6 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Button } from 'reactstrap';
+import { Button, Alert } from 'reactstrap';
 import PortfolioInput from '../form/PortfolioInput';
 import PortfolioDate from '../form/PortfolioDate';
 
@@ -51,6 +51,12 @@ const PortfolioForm = (props) => (
           <Field type="textarea" name="description" component={PortfolioInput} label="Description"/>
           <Field name="startDate" component={PortfolioDate} label="Start Date"/>
           <Field name="endDate" component={PortfolioDate} label="End Date" canBeDisabled={true}/>
+          {
+            props.error && 
+            <Alert color="danger">
+              {props.error}
+            </Alert>
+          }
           <Button color="success" size='lg' type="submit" disabled={isSubmitting}>
             Create
           </Button>

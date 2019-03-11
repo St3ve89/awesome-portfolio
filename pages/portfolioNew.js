@@ -13,24 +13,29 @@ class PortfolioNew extends Component {
   constructor(props) {
     super();
 
+    this.state = {
+      error: undefined
+    }
+
     this.savePortfolio = this.savePortfolio.bind(this);
   }
 
   savePortfolio(portfolioData) {
     createPortfolio(portfolioData).then((portfolio) => {
-      console.log(portfolio)
+      this.setState({error: undefined})
     }).catch ((err) => {
-      console.error(err)
+      this.setState({error: err.message})
     })
   }
 
   render() {
+    const { error } = this.state;
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-create-page" title="Create new Portfolio">
           <Row>
             <Col md="6">
-              <PortfolioForm onSubmit={this.savePortfolio}/>
+              <PortfolioForm error={error} onSubmit={this.savePortfolio}/>
             </Col>
           </Row>
         </BasePage>
