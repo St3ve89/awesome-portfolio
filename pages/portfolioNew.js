@@ -7,6 +7,7 @@ import PortfolioForm from '../components/portfolios/PortfolioForm';
 import { Row, Col } from 'reactstrap';
 
 import { createPortfolio } from '../actions/index';
+import { Router } from '../routes';
 
 class PortfolioNew extends Component {
 
@@ -20,11 +21,17 @@ class PortfolioNew extends Component {
     this.savePortfolio = this.savePortfolio.bind(this);
   }
 
-  savePortfolio(portfolioData) {
+  savePortfolio(portfolioData, {setSubmitting}) {
+    setSubmitting(true);
+
     createPortfolio(portfolioData).then((portfolio) => {
+      setSubmitting(false);
       this.setState({error: undefined})
+      Router.pushRoute('/portfolios');
     }).catch ((err) => {
-      this.setState({error: err.message})
+      const error = err.message || 'Server Error!';
+      setSubmitting(false);
+      this.setState({error})
     })
   }
 
