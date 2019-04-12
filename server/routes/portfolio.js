@@ -9,6 +9,8 @@ router.post('', authService.checkJWT, authService.checkRole('siteOwner'), bookPo
 
 router.get('', bookPortfolio.getPortfolios);
 
+router.get('/:id',  bookPortfolio.getPortfolioById);
+
 router.patch('/:id',authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.updatePortfolio);
 
 router.delete('/:id',authService.checkJWT, authService.checkRole('siteOwner'), bookPortfolio.deletePortfolio);
