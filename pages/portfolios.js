@@ -6,7 +6,7 @@ import { Card, CardText, CardBody,
 
 import { Router } from '../routes';
 
-import { getPortfolios } from '../actions/index';
+import { getPortfolios, deletePortfolio } from '../actions/index';
 
 
 
@@ -22,6 +22,23 @@ class Portfolios extends Component {
     }
 
     return {portfolios};
+  }
+
+  displayDeleteWarning(portfolioId) {
+    const isConfirm =  confirm('Are you sure you want to delete this portfolio?')
+
+    if(isConfirm) {
+      // delete portfolio here
+      this.deletePortfolio(portfolioId)
+    }
+  }
+
+  deletePortfolio(portfolioId) {
+    deletePortfolio(portfolioId).then(() => {
+      //  Decide what to do yet
+      Router.pushRoute('/portfolios')
+    })
+    .catch(err => console.error(err)) 
   }
 
   renderPortfolios(portfolios) {
@@ -42,7 +59,7 @@ class Portfolios extends Component {
                   { isAuthenticated && isSiteOwner &&
                     <React.Fragment>
                       <Button onClick={() => Router.pushRoute(`/portfolios/${portfolio._id}/edit`)} color="warning">Edit</Button>{' '}
-                      <Button color="danger">Delete</Button>
+                      <Button onClick={() => this.displayDeleteWarning(portfolio._id)} color="danger">Delete</Button>
                     </React.Fragment>
                   }
                   </div>
