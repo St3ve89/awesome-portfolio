@@ -36,7 +36,7 @@ class portfolioEdit extends Component {
 
   updatePortfolio(portfolioData, {setSubmitting}) {
     setSubmitting(true);
-    debugger;
+    
     updatePortfolio(portfolioData).then((portfolio) => {
       setSubmitting(false);
       this.setState({error: undefined})
