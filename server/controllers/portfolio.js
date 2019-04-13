@@ -13,7 +13,7 @@ exports.getPortfolios = (req, res) => {
 exports.getPortfolioById = (req,res) => {
   const portfolioId = req.params.id;
 
-  Portfolio.findById(portfolioId, (err, foundPortfolio) => {
+  Portfolio.findById(portfolioId).select('-__v').exec((err, foundPortfolio) => {
     if(err) {
       return res.status(422).send(err)
     }

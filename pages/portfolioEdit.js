@@ -6,7 +6,7 @@ import PortfolioForm from '../components/portfolios/PortfolioForm';
 
 import { Row, Col } from 'reactstrap';
 
-import { createPortfolio, getPortfolioById } from '../actions/index';
+import { updatePortfolio, getPortfolioById } from '../actions/index';
 import { Router } from '../routes';
 
 class portfolioEdit extends Component {
@@ -31,21 +31,21 @@ class portfolioEdit extends Component {
       error: undefined
     }
 
-    this.savePortfolio = this.savePortfolio.bind(this);
+    this.updatePortfolio = this.updatePortfolio.bind(this);
   }
 
-  savePortfolio(portfolioData, {setSubmitting}) {
-    // setSubmitting(true);
-
-    // createPortfolio(portfolioData).then((portfolio) => {
-    //   setSubmitting(false);
-    //   this.setState({error: undefined})
-    //   Router.pushRoute('/portfolios');
-    // }).catch ((err) => {
-    //   const error = err.message || 'Server Error!';
-    //   setSubmitting(false);
-    //   this.setState({error})
-    // })
+  updatePortfolio(portfolioData, {setSubmitting}) {
+    setSubmitting(true);
+    debugger;
+    updatePortfolio(portfolioData).then((portfolio) => {
+      setSubmitting(false);
+      this.setState({error: undefined})
+      Router.pushRoute('/portfolios');
+    }).catch ((err) => {
+      const error = err.message || 'Server Error!';
+      setSubmitting(false);
+      this.setState({error})
+    })
   }
 
   render() {
@@ -54,13 +54,13 @@ class portfolioEdit extends Component {
 
     return (
       <BaseLayout {...this.props.auth}>
-        <BasePage className="portfolio-create-page" title="Create new Portfolio">
+        <BasePage className="portfolio-create-page" title="Update Portfolio">
           <Row>
             <Col md="6">
               <PortfolioForm 
                 initialValues={portfolio}
                 error={error}
-                onSubmit={this.savePortfolio}/>
+                onSubmit={this.updatePortfolio}/>
             </Col>
           </Row>
         </BasePage>
