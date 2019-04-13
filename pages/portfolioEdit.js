@@ -50,12 +50,17 @@ class portfolioEdit extends Component {
 
   render() {
     const { error } = this.state;
+    const { portfolio } = this.props;
+
     return (
       <BaseLayout {...this.props.auth}>
         <BasePage className="portfolio-create-page" title="Create new Portfolio">
           <Row>
             <Col md="6">
-              <PortfolioForm error={error} onSubmit={this.savePortfolio}/>
+              <PortfolioForm 
+                initialValues={portfolio}
+                error={error}
+                onSubmit={this.savePortfolio}/>
             </Col>
           </Row>
         </BasePage>
