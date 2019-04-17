@@ -25,6 +25,15 @@ const initialValue = Value.fromJSON({
   },
 })
 
+// Define a React component renderer for our code blocks.
+function CodeNode(props) {
+  return (
+    <pre {...props.attributes}>
+      <code>{props.children}</code>
+    </pre>
+  )
+}
+
 export default class SlateEditor extends React.Component {
   state = {
     value: initialValue,
@@ -40,14 +49,27 @@ export default class SlateEditor extends React.Component {
   }
 
   onKeyDown = (event, editor, next) => {
-    // Return with no changes if the keypress is not '&'
-    if (event.key !== '&') return next()
+    if (event.key != '`' || !event.ctrlKey) return next()
     
-    // Prevent the ampersand character from being inserted.
     event.preventDefault()
 
-    // Change the value by inserting 'and' at the cursor's position.
-    editor.insertText('and')
+    // Determine whether any of the currently selected blocks are code blocks.
+    const isCode = editor.value.blocks.some(block => block.type == 'code')
+
+    // Toggle the block type depending on `isCode`.
+    editor.setBlocks(isCode ? 'paragraph' : 'code')
+  }
+
+  // Add a `renderNode` method to render a `CodeNode` for code blocks.
+  renderNode = (props, editor, next) => {
+    switch (props.node.type) {
+      case 'code':
+        return <CodeNode {...props} />
+      case 'paragraph':
+        return <p {...props.attributes}>{props.children}</p>
+      default:
+        return next()
+    }
   }
 
   render() {
@@ -57,6 +79,7 @@ export default class SlateEditor extends React.Component {
         { isLoaded && <Editor value={value} 
                               onChange={this.onChange} 
                               onKeyDown={this.onKeyDown}
+                              renderNode={this.renderNode}
                               /> }
       </React.Fragment>
     )
