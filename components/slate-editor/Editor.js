@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 // Import the Slate editor.
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
+import { renderMark } from './renderers';
+import HoverMenu from './HoverMenu';
 
 
 const initialValue = Value.fromJSON({
@@ -46,58 +48,40 @@ export default class SlateEditor extends React.Component {
   }
 
   componentDidMount() {
+    this.updateMenu();
     this.setState({isLoaded: true});
   }
-  
+
+  componentDidUpdate() {
+    this.updateMenu();
+  }
+
   onChange = ({ value }) => {
-    this.setState({ value })
+    this.setState({ value });
   }
 
-  onKeyDown = (event, editor, next) => {
-    if (!event.ctrlKey) return next()
+  updateMenu = () => {
+    const menu = this.menu
+    if (!menu) return
 
-    // Decide what to do based on the key code...
-    switch (event.key) {
-      // When "B" is pressed, add a "bold" mark to the text.
-      case 'b': {
-        event.preventDefault()
-        editor.toggleMark('bold')
-        break
-      }
-      // When "`" is pressed, keep our existing code block logic.
-      case '`': {
-        const isCode = editor.value.blocks.some(block => block.type == 'code')
-        event.preventDefault()
-        editor.setBlocks(isCode ? 'paragraph' : 'code')
-        break
-      }
-      // Otherwise, let other plugins handle it.
-      default: {
-        return next()
-      }
-    }
-  }
+    const { value } = this.state
+    const { fragment, selection } = value
 
-  // Add a `renderNode` method to render a `CodeNode` for code blocks.
-  renderNode = (props, editor, next) => {
-    switch (props.node.type) {
-      case 'code':
-        return <CodeNode {...props} />
-      case 'paragraph':
-        return <p {...props.attributes}>{props.children}</p>
-      default:
-        return next()
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      menu.removeAttribute('style')
+      return
     }
-  }
 
-  // Add a `renderMark` method to render marks.
-  renderMark = (props, editor, next) => {
-    switch (props.mark.type) {
-      case 'bold':
-        return <BoldMark {...props} />
-      default:
-        return next()
-    }
+    const native = window.getSelection()
+    const range = native.getRangeAt(0)
+    const rect = range.getBoundingClientRect()
+    menu.style.opacity = 1
+    menu.style.top = `${rect.top + window.pageYOffset - menu.offsetHeight}px`
+
+    menu.style.left = `${rect.left +
+      window.pageXOffset -
+      menu.offsetWidth / 2 +
+      rect.width / 2}px`
   }
 
   render() {
@@ -105,11 +89,20 @@ export default class SlateEditor extends React.Component {
     return (
       <React.Fragment>
         { isLoaded && <Editor value={value} 
-                              onChange={this.onChange} 
-                              onKeyDown={this.onKeyDown}
-                              renderNode={this.renderNode}
-                              renderMark={this.renderMark}
+                              onChange={this.onChange}
+                              renderMark={renderMark}
+                              renderEditor={this.renderEditor}
                               /> }
+      </React.Fragment>
+    )
+  }
+
+  renderEditor = (props, editor, next) => {
+    const children = next()
+    return (
+      <React.Fragment>
+        {children}
+        <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
       </React.Fragment>
     )
   }
