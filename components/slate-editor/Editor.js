@@ -1,45 +1,10 @@
 import React from 'react';
 // Import the Slate editor.
 import { Editor } from 'slate-react';
-import { Value } from 'slate';
 import { renderMark } from './renderers';
 import HoverMenu from './HoverMenu';
+import { initialValue } from './initial-value';
 
-
-const initialValue = Value.fromJSON({
-  document: {
-    nodes: [
-      {
-        object: 'block',
-        type: 'paragraph',
-        nodes: [
-          {
-            object: 'text',
-            leaves: [
-              {
-                text: 'A line of text in a paragraph.',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-})
-
-// Define a React component renderer for our code blocks.
-function CodeNode(props) {
-  return (
-    <pre {...props.attributes}>
-      <code>{props.children}</code>
-    </pre>
-  )
-}
-
-// Define a React component to render bold text with.
-function BoldMark(props) {
-  return <strong>{props.children}</strong>
-}
 
 export default class SlateEditor extends React.Component {
   state = {
