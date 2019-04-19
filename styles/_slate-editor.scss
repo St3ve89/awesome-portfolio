@@ -1,0 +1,16 @@
+.controll-menu {
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  .title {
+    flex: 1;
+    font-weight: bold;
+  }
+
+  .status-box {
+    margin-right: 10px;
+  }
+}
