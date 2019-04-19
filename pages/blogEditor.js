@@ -16,8 +16,10 @@ class BlogEditor extends Component {
 
   saveBlog(heading) {
 
-    heading.title,
-    heading.subtitle
+    const blog = {};
+    blog.title = heading.title;
+    blog.subtitle = heading.subtitle;
+    
     console.log('Calling saveBlog()')
   } 
 

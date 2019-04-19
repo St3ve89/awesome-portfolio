@@ -51,9 +51,16 @@ export default class SlateEditor extends React.Component {
   }
 
   getTitle() {
+    const { value } = this.state;
+    const fristBlock = value.document.getBlocks().get(0);
+    const secondBlock = value.document.getBlocks().get(1);
+
+    const title = fristBlock && fristBlock.text ? fristBlock.text : 'No Title';
+    const subtitle = secondBlock && secondBlock.text ? secondBlock.text : 'No Subtitle';
+    
     return {
-      title: 'Some title',
-      subtitle: 'Some subtitle'
+      title,
+      subtitle
     }
   }
 
