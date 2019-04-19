@@ -1,8 +1,8 @@
 import React from 'react';
+import HoverMenu from './HoverMenu';
 // Import the Slate editor.
 import { Editor } from 'slate-react';
-import { renderMark } from './renderers';
-import HoverMenu from './HoverMenu';
+import { renderMark, renderNode } from './renderers';
 import { initialValue } from './initial-value';
 
 
@@ -56,6 +56,7 @@ export default class SlateEditor extends React.Component {
         { isLoaded && <Editor value={value} 
                               onChange={this.onChange}
                               renderMark={renderMark}
+                              renderNode={renderNode}
                               renderEditor={this.renderEditor}
                               /> }
       </React.Fragment>
