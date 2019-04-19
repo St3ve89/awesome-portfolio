@@ -7,5 +7,8 @@ const blogCtrl = require('../controllers/blog');
 
 router.post('', authService.checkJWT, authService.checkRole('siteOwner'), blogCtrl.createBlog);
 
+router.get('/:id', blogCtrl.getBlogById);
+
+
 
 module.exports = router;
