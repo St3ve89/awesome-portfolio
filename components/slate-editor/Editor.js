@@ -57,7 +57,7 @@ export default class SlateEditor extends React.Component {
 
     const title = fristBlock && fristBlock.text ? fristBlock.text : 'No Title';
     const subtitle = secondBlock && secondBlock.text ? secondBlock.text : 'No Subtitle';
-    
+
     return {
       title,
       subtitle
@@ -87,10 +87,11 @@ export default class SlateEditor extends React.Component {
   }
 
   renderEditor = (props, editor, next) => {
-    const children = next()
+    const children = next();
+    const { isLoading } = this.props;
     return (
       <React.Fragment>
-        <ControllMenu save={() => this.save()}></ControllMenu>
+        <ControllMenu isLoading={isLoading} save={() => this.save()}></ControllMenu>
         {children}
         <HoverMenu innerRef={menu => (this.menu = menu)} editor={editor} />
       </React.Fragment>
