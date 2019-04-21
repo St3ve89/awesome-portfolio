@@ -10,7 +10,7 @@ const ControllMenu = (props) => {
       <div className="status-box">
         { props.isLoading ? 'Saving...' : 'Saved'}
       </div>
-      <Button onClick={props.save} color="success">Save</Button>
+      <Button disabled={ props.isLoading } onClick={ props.save } color="success">Save</Button>
     </div>
   )
 }
