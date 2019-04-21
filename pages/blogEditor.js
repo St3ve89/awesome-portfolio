@@ -21,7 +21,6 @@ class BlogEditor extends Component {
     this.saveBlog = this.saveBlog.bind(this)
   }
 
-
   saveBlog(story, heading) {
     const { lockId } = this.state;
     const blog = {};
@@ -40,8 +39,6 @@ class BlogEditor extends Component {
       console.error(message)
     })
   } 
-
-
 
   render() {
     const { isSaving } = this.state
