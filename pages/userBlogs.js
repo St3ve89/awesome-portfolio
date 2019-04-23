@@ -5,8 +5,24 @@ import { Container, Row, Col } from 'reactstrap';
 
 import withAuth from '../components/hoc/withAuth';
 
+import { getUserBlogs } from '../actions/index';
+
 class UserBlogs extends Component {
+
+  static async getInitialProps({req}) {
+    let blogs = [];
+    try {
+      blogs = await getUserBlogs(req)
+    } catch(err) {
+      console.error(err)
+    }
+
+    return {blogs}
+  }
+
   render() {
+    const {blogs} = this.props;
+    console.log(blogs)
     return (
       <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
         <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>

@@ -6,6 +6,8 @@ const authService = require('../services/auth');
 const blogCtrl = require('../controllers/blog');
 
 
+router.get('/me', authService.checkJWT, authService.checkRole('siteOwner'), blogCtrl.getUserBlogs);
+
 router.get('/:id', blogCtrl.getBlogById);
 
 router.post('', authService.checkJWT, authService.checkRole('siteOwner'), blogCtrl.createBlog);
