@@ -22,7 +22,7 @@ export default class PortButtonDropdown extends React.Component {
       <DropdownMenu>
         {
           items.map((item,index) => (
-            <DropdownItem key={index}>{item.text}</DropdownItem>
+            <DropdownItem key={index} {...item.handlers}>{item.text}</DropdownItem>
           ))
         }
       </DropdownMenu>
