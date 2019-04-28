@@ -3,11 +3,11 @@ import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import { Container, Row, Col } from 'reactstrap';
 import PortButtonDropdown from '../components/ButtonDropdown';
-import { Link } from '../routes';
+import { Link, Router } from '../routes';
 
 import withAuth from '../components/hoc/withAuth';
 
-import { getUserBlogs } from '../actions/index';
+import { getUserBlogs, updateBlog } from '../actions/index';
 
 class UserBlogs extends Component {
 
@@ -22,9 +22,15 @@ class UserBlogs extends Component {
     return {blogs}
   }
 
-  changeBlogstatus() {
-    alert('Changing blog status');
-  }
+  changeBlogstatus(status, blogId) {
+    updateBlog({status}, blogId)
+      .then(() => {
+        Router.pushRoute('/userBlogs');
+      })
+      .catch(err => {
+        console.error(err)
+      })
+    }
 
   deleteBlog() {
     alert('Deleting blog');
@@ -42,14 +48,14 @@ class UserBlogs extends Component {
   }
 
   createStatus(status) {
-    return status === 'draft' ? 'Publish Story' : 'Make a Draft';
+    return status === 'draft' ? { view: 'Publish Story', value: 'published' } : { view: 'Make a Draft', value: 'draft' };
   }
 
   dropdownOptions = (blog) => {
     const status = this.createStatus(blog.status)
 
     return [
-      { text: status, handlers: { onClick: () => this.changeBlogstatus() }},
+      { text: status.view, handlers: { onClick: () => this.changeBlogstatus(status.value, blog._id,) }},
       { text: 'Delete',  handlers: { onClick: () => this.deleteBlog() }}
     ]
   }
