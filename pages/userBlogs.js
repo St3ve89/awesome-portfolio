@@ -7,7 +7,7 @@ import { Link, Router } from '../routes';
 
 import withAuth from '../components/hoc/withAuth';
 
-import { getUserBlogs, updateBlog } from '../actions/index';
+import { getUserBlogs, updateBlog, deleteBlog } from '../actions/index';
 
 class UserBlogs extends Component {
 
@@ -26,14 +26,24 @@ class UserBlogs extends Component {
     updateBlog({status}, blogId)
       .then(() => {
         Router.pushRoute('/userBlogs');
-      })
+    })
       .catch(err => {
         console.error(err)
-      })
-    }
+    })
+  }
 
-  deleteBlog() {
-    alert('Deleting blog');
+  deleteBlogWarning(blogId) {
+    const res = confirm('Are you sure you want to delete this blog post?');
+
+    if(res) {
+      this.deleteBlog(blogId)
+    }
+  }
+
+  deleteBlog(blogId) {
+    deleteBlog(blogId).then(status => {
+      Router.pushRoute('/userBlogs');
+    }).catch(err => console.error(err.message))
   }
 
   separateBlogs(blogs) {
@@ -56,7 +66,7 @@ class UserBlogs extends Component {
 
     return [
       { text: status.view, handlers: { onClick: () => this.changeBlogstatus(status.value, blog._id,) }},
-      { text: 'Delete',  handlers: { onClick: () => this.deleteBlog() }}
+      { text: 'Delete',  handlers: { onClick: () => this.deleteBlogWarning(blog._id) }}
     ]
   }
 

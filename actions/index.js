@@ -78,3 +78,7 @@ export const updateBlog = (blogData, blogId) => {
 export const getBlogById = (blogId) => {
   return axiosInstance.get(`/blogs/${blogId}`).then(response => response.data);
 }
+
+export const deleteBlog = (blogId) => {
+  return axiosInstance.delete(`/blogs/${blogId}`, setAuthHeader()).then(response => response.data).catch(err => rejectPromise(err));
+}
