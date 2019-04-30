@@ -63,8 +63,12 @@ export const deletePortfolio = (portfolioId) => {
 
 // Blog actions
 
-export const getBlogs = async(req) => {
+export const getBlogs = async (req) => {
   return await axiosInstance.get('/blogs').then(response => response.data);
+}
+
+export const getBlogBySlug = async (slug) => {
+  return await axiosInstance.get(`/blogs/s/${slug}`).then(response => response.data);
 }
 
 export const getUserBlogs = async (req) => {

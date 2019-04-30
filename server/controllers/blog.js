@@ -16,7 +16,7 @@ exports.getBlogs = (req, res) => {
 exports.getBlogBySlug = (req, res) => {
   const slug = req.params.slug;
 
-  Blog.find({slug}, function(err, foundBlog) {
+  Blog.findOne({slug}, function(err, foundBlog) {
     if(err) {
       return res.status(422).send(err);
     }
