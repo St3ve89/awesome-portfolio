@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import PortButtonDropdown from '../components/ButtonDropdown';
 import { Link, Router } from '../routes';
 
@@ -101,15 +101,15 @@ class UserBlogs extends Component {
                 <div className="site-heading">
                   <h1>Blogs Dashboard</h1>
                   <span className="subheading">Let's write some nice blog today</span>
+                  <Link route="/blogs/new">
+                    <Button color="primary">Create a new Blog</Button>
+                  </Link>
                 </div>
               </div>
             </div>
           </Container>
         </div>
         <BasePage className="blog-body">
-          <Link route="/blogs/new">
-            <a>Create a new Blog</a>
-          </Link>
           <Row>
             <Col md="6" className="mx-auto text-center">
               <h2 className="blog-status-title">Published Blogs</h2>
