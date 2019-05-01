@@ -7,7 +7,10 @@ import { Link } from '../routes';
 
 import { getBlogs } from '../actions';
 
+import { shortenText } from '../helpers/utils';
+
 import moment from 'moment';
+
 class Blogs extends Component {
   static async getInitialProps({req}) {
     let blogs = []
@@ -29,7 +32,7 @@ class Blogs extends Component {
               {blog.title}
             </h2>
             <h3 className="post-subtitle">
-              {blog.subTitle}
+              {shortenText(blog.subTitle)}
             </h3>
           </a>
         </Link>
