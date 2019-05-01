@@ -99,14 +99,17 @@ class UserBlogs extends Component {
             <div className="row">
               <div className="col-lg-8 col-md-10 mx-auto">
                 <div className="site-heading">
-                  <h1>Fresh Blogs</h1>
-                  <span className="subheading">Programming, travelling...</span>
+                  <h1>Blogs Dashboard</h1>
+                  <span className="subheading">Let's write some nice blog today</span>
                 </div>
               </div>
             </div>
           </Container>
         </div>
         <BasePage className="blog-body">
+          <Link route="/blogs/new">
+            <a>Create a new Blog</a>
+          </Link>
           <Row>
             <Col md="6" className="mx-auto text-center">
               <h2 className="blog-status-title">Published Blogs</h2>
