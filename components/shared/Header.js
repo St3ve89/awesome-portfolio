@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import ActiveLink from '../ActiveLink';
 import {
   Collapse,
   Navbar,
@@ -15,9 +16,9 @@ const BsNavLink = (props) => {
   const { route, text } = props;
 
   return (
-    <Link href={route}>
+    <ActiveLink href={route}>
       <a className="nav-link port-navbar-link">{text}</a>
-    </Link>
+    </ActiveLink>
   )
 }
 
