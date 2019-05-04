@@ -18,10 +18,11 @@ import auth0 from '../../services/auth0';
 
 const BsNavLink = (props) => {
   const { route, text } = props;
+  const className = props.className || '';
 
   return (
     <ActiveLink activeClassName="active" route={route}>
-      <a className="nav-link port-navbar-link">{text}</a>
+      <a className={`nav-link port-navbar-link ${className}`}>{text}</a>
     </ActiveLink>
   )
 }
@@ -69,19 +70,19 @@ export default class Header extends React.Component {
 
     if(isSiteOwner) {
       return (
-        <Dropdown className="port-navbar-link" nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
-          <DropdownToggle nav caret>
+        <Dropdown className="port-navbar-link port-dropdown-menu" nav isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+          <DropdownToggle className="port-dropdown-toggle" nav caret>
             Blog
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>
-              <BsNavLink route="/blogs" text="Blogs"/>
+              <BsNavLink className="port-dropdown-item" route="/blogs" text="Blogs"/>
             </DropdownItem>
             <DropdownItem>
-              <BsNavLink route="/blogs/new" text="Create a Blog"/>
+              <BsNavLink className="port-dropdown-item" route="/blogs/new" text="Create a Blog"/>
             </DropdownItem>
             <DropdownItem>
-              <BsNavLink route="/blogs/dashboard" text="Blogs Dashboard"/>
+              <BsNavLink className="port-dropdown-item" route="/blogs/dashboard" text="Blogs Dashboard"/>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
