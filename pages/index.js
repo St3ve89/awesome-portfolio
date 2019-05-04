@@ -13,7 +13,7 @@ class Index extends React.Component {
       isFlipping: false
     }
 
-    this.roles = ['Developer', 'Tech Lover', 'Team player', 'React', 'StencilJS'];
+    this.roles = ['Developer', 'Tech Lover', 'Team player', 'React', 'StencilJS', 'TypeScript'];
   }
 
   componentDidMount() {
@@ -29,7 +29,7 @@ class Index extends React.Component {
       this.setState({
         isFlipping: !this.state.isFlipping
       });
-    }, 3000);
+    }, 8000);
   }
 
   render() {
@@ -37,7 +37,7 @@ class Index extends React.Component {
     const { isFlipping } = this.state;
 
     return (
-      <BaseLayout className="cover" {...this.props.auth} headerType="index">
+      <BaseLayout className={`cover ${isFlipping ? 'cover-1' : ''}` } {...this.props.auth} headerType="index">
         <div className="main-section">
           <div className="background-image">
             <img src="/static/images/background-index.png" />
@@ -68,7 +68,7 @@ class Index extends React.Component {
                         </div>
                       </div>
                       <img className="image" src="/static/images/section-2.png"/>
-                      <div className="shadow-custom">
+                      <div className="shadow-custom shadow-custom-2">
                         <div className="shadow-inner"> </div>
                       </div>
                     </div>
