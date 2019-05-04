@@ -16,7 +16,7 @@ const BsNavLink = (props) => {
   const { route, text } = props;
 
   return (
-    <ActiveLink href={route}>
+    <ActiveLink activeClassName="active" route={route}>
       <a className="nav-link port-navbar-link">{text}</a>
     </ActiveLink>
   )
