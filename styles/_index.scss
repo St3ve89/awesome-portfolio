@@ -124,8 +124,19 @@
   }
 }
 
+.front,
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(0deg);
+  z-index: 9999;
+}
 
 .back {
-  transform: rotateY(0deg);
-
+  transform: rotateY(180deg);
 }
