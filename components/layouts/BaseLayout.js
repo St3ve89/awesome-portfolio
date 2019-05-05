@@ -11,6 +11,8 @@ const BaseLayout = props => {
     <React.Fragment>
       <Head>
         <title>{title}</title>
+        <meta name="description" content="My name is Istvan Acs and I make the front-end world better every day."></meta>
+        <meta name="keywords" content="istvan portfolio, istvan developer, istvan front-end"></meta>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
