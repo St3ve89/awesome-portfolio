@@ -47,7 +47,7 @@ class Blogs extends Component {
     const { blogs } = this.props
 
     return (
-      <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
+      <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page" title="Istvan Acs - Newest Blogs to Read">
         <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>
           <div className="overlay"></div>
           <Container>
