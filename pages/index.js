@@ -40,7 +40,7 @@ class Index extends React.Component {
       <BaseLayout className={`cover ${isFlipping ? 'cover-1' : ''}` } {...this.props.auth} headerType="index" title="Istvan Acs - Portfolio">
         <div className="main-section">
           <div className="background-image">
-            <img src="/static/images/background-index.png" />
+            <img src="/static/images/background-index.png" alt="Background welcome image"/>
           </div>
 
           <Container>
@@ -55,7 +55,7 @@ class Index extends React.Component {
                           Have a look at my portfolio and job history.
                         </div>
                       </div>
-                      <img className="image" src="/static/images/section-1.png"/>
+                      <img className="image" src="/static/images/section-1.png" alt="Guy welcoming programming picture"/>
                       <div className="shadow-custom">
                         <div className="shadow-inner"> </div>
                       </div>
@@ -67,7 +67,7 @@ class Index extends React.Component {
                           Professional and top quality service in web development.
                         </div>
                       </div>
-                      <img className="image" src="/static/images/section-2.png"/>
+                      <img className="image" src="/static/images/section-2.png" alt="Guy welcoming programming picture"/>
                       <div className="shadow-custom shadow-custom-2">
                         <div className="shadow-inner"> </div>
                       </div>
@@ -95,9 +95,10 @@ class Index extends React.Component {
                   cursorChar="|"
                 />
                 <div className="hero-welcome-bio">
-                  <h1>
+                {/* replace h2 with links to social media */}
+                  <h2>
                     Let's take a look on my work.
-                  </h1>
+                  </h2>
                 </div>
               </Col>
             </Row>

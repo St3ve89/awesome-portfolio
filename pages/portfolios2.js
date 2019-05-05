@@ -10,7 +10,7 @@ import { getPortfolios, deletePortfolio } from '../actions/index';
 
 
 
-class Portfolios extends Component {
+class Portfolios2 extends Component {
 
   static async getInitialProps() {
     let portfolios = [];
@@ -70,7 +70,7 @@ class Portfolios extends Component {
     const { portfolios } = this.props;
     const { isAuthenticated, isSiteOwner } = this.props.auth;
     return (
-      <BaseLayout {...this.props.auth} title="Istvan Acs - Learn about my experience">
+      <BaseLayout {...this.props.auth} title="Istvan Acs - Learn about my experience" cannonical="/portfolios">
         <BasePage className="portfolio-page" title="Portfolios">
         { isAuthenticated && isSiteOwner &&
           <Button onClick={() => Router.pushRoute('/portfolios/new')} color="success" className="create-port-btn">Create Portfolio</Button>
@@ -84,4 +84,4 @@ class Portfolios extends Component {
   }
 }
 
-export default Portfolios;
+export default Portfolios2;

@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 const BaseLayout = props => {
 
-  const { className, children, isAuthenticated, isSiteOwner, title} = props;
+  const { className, children, isAuthenticated, isSiteOwner, title, cannonical} = props;
   const headerType = props.headerType || 'default';
 
   return (
@@ -13,11 +13,13 @@ const BaseLayout = props => {
         <title>{title}</title>
         <meta name="description" content="My name is Istvan Acs and I make the front-end world better every day." />
         <meta name="keywords" content="istvan portfolio, istvan developer, istvan front-end" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="Istvan Acs - programmer, developer" />
         <meta property="og:locale" content="en_GB" />
         <meta property="og:url" content="http://localhost:3000"/>
         <meta property="og:type" content="website"/>
         <meta property="og:description" content="My name is Istvan Acs and I make the front-end world better every day."/>
+        { cannonical && <link rel="cannonical" href={`http://localhost:3000${cannonical}`}/> }
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
