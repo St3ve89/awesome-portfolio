@@ -95,7 +95,6 @@ class Index extends React.Component {
                   cursorChar="|"
                 />
                 <div className="hero-welcome-bio">
-                {/* replace h2 with links to social media */}
                   <h2>
                     Let's take a look on my work.
                   </h2>

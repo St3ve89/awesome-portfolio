@@ -33,6 +33,17 @@ const BaseLayout = props => {
             {children}
           </div>
         </main>
+        <footer>
+          <div className="footer">
+            <div className="footer-icons">
+              <a href="https://github.com/St3ve89" target="_blank"><i className="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/istvan-acs-b24479160/" target="_blank"><i className="fab fa-linkedin"></i></a>
+            </div>
+            <div className="footer-text">
+              Made with ❤️ by Istvan Acs
+            </div>
+          </div>
+        </footer>
       </div>
     </React.Fragment>
   )
