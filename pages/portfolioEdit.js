@@ -20,7 +20,6 @@ class portfolioEdit extends Component {
       console.error(err)
     }
 
-    console.log(portfolio)
     return {portfolio}
   }
 
