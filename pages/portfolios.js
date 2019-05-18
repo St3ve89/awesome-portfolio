@@ -71,7 +71,7 @@ class Portfolios extends Component {
     const { isAuthenticated, isSiteOwner } = this.props.auth;
     return (
       <BaseLayout {...this.props.auth} title="Istvan Acs - Learn about my experience">
-        <BasePage className="portfolio-page" title="Portfolios">
+        <BasePage className="portfolio-page" title="Experiences">
         { isAuthenticated && isSiteOwner &&
           <Button onClick={() => Router.pushRoute('/portfolios/new')} color="success" className="create-port-btn">Create Portfolio</Button>
         }
