@@ -37,7 +37,7 @@ class BlogEditor extends Component {
       Router.pushRoute(`/blogs/${createdBlog._id}/edit`)
     }).catch(err => {
       this.setState({isSaving:false})
-      toast.error('Unexpected Error, Cpy your progress and refresh browser please.')
+      toast.error('Unexpected Error, Copy your progress and refresh browser please.')
       const message = err.message || 'Server Error!'
       console.error(message)
     })

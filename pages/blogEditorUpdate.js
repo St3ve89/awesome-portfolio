@@ -50,7 +50,7 @@ class BlogEditorUpdate extends Component {
     }).catch(err => {
       this.setState({isSaving:false})
       const message = err.message || 'Server Error!';
-      toast.error('Unexpected Error, Cpy your progress and refresh browser please.')
+      toast.error('Unexpected Error, Copy your progress and refresh browser please.')
       console.error(message)
     })
   } 
